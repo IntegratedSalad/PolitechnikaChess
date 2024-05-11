@@ -1,2 +1,3 @@
-package PACKAGE_NAME;public enum State {
+public enum State {
+    RUNNING, SCOREBOARD, EXIT, ERROR
 }
