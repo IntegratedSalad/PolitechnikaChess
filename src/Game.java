@@ -7,6 +7,8 @@ public class Game {
     private static String[] playerNames = new String[2];
     private static Scanner scanner = new Scanner(System.in);
 
+    private static final int RETURN_ERROR = 65535;
+
     public Game() {
         state = State.RUNNING;
     }
@@ -28,11 +30,10 @@ public class Game {
         System.out.println("Player (2): " + playerNames[1]);
         int currentPlayer = GetIntFromInput(false);
 
-        if (currentPlayer != 65535) {
+        if (currentPlayer != RETURN_ERROR) {
             currentPlayer -= 1;
         } else {
-            state = State.ERROR;
-            return state;
+            return State.ERROR;
         }
         System.out.println("Current player = " + currentPlayer);
 
@@ -66,7 +67,7 @@ public class Game {
             x = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             System.out.println("Please enter a number, try again");
-            x = 65535;
+            x = RETURN_ERROR;
         }
         return x;
     }
