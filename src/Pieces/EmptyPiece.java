@@ -7,6 +7,8 @@ public class EmptyPiece implements Piece {
     /* Attributes */
     private Color color = null;
     private Pos pos = null;
+    private final String name = " ";
+    private final char glyph = ' ';
 
     public EmptyPiece(int x, int y) {
         Pos pos = new Pos(x, y);
@@ -35,5 +37,9 @@ public class EmptyPiece implements Piece {
 
     public Pos GetPos() {
         return this.pos;
+    }
+
+    public String RepresentOnBoard() {
+        return "  "; // two spaces!
     }
 }
