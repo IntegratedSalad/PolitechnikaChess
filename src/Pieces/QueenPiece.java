@@ -1,14 +1,15 @@
 package Pieces;
+
 import Chess.Color;
 import Chess.Piece;
 import Chess.Pos;
 
-public class KnightPiece implements Piece {
+public class QueenPiece implements Piece {
     /* Attributes */
     private Color color = null;
     private Pos pos = null;
-    private final String name = "Knight";
-    private final char glyph = 'K';
+    private final String name = "Queen";
+    private final char glyph = 'Q';
 
     public boolean DoMove(final Piece[][] mapArray) {
         return true;

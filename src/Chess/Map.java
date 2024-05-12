@@ -15,9 +15,6 @@ public class Map {
             for (int x = 0; x < BOARD_SIZE_WIDTH; x++) {
                 Piece emptyPiece = new EmptyPiece(x, y);
                 mapArray[y][x] = emptyPiece;
-
-                System.out.println("x: " + x + " y: " + y);
-
                 // x span from a to h
                 // y span from 8 to 1
             }
@@ -29,12 +26,23 @@ public class Map {
     }
 
     public void PrintMap() {
-        // TODO: Important
 
-        for (int y = 0; y < BOARD_SIZE_HEIGHT; y++) {
-            for (int x = 0; x < BOARD_SIZE_WIDTH; x++) {
-                // !!!
+        final String rowMarks = "abcdefgh";
+        for (int y = 0; y < BOARD_SIZE_HEIGHT + 1; y++) {
+            for (int x = 0; x < BOARD_SIZE_WIDTH + 1; x++) {
+                if (y == 0)
+                {
+                    System.out.print(rowMarks.charAt(x));
+                }
+
+
+
+                if (x == BOARD_SIZE_WIDTH)
+                {
+                    System.out.print(8 - y);
+                }
             }
+            System.out.println();
         }
     }
 

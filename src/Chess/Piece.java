@@ -9,4 +9,5 @@ public interface Piece {
     /* Getters */
     public Color GetColor();
     public Pos GetPos();
+
 }
