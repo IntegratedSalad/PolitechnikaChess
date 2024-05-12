@@ -1,3 +1,5 @@
+package Chess;
+
 import java.util.Scanner;
 
 public class Game {
@@ -36,9 +38,13 @@ public class Game {
             return State.ERROR;
         }
         System.out.println("Current player = " + currentPlayer);
-
         System.out.println("Starting game");
-//        while (state == State.RUNNING) {
+
+        // Setup Board
+
+        // How to associate pieces with the player? By color
+
+//        while (state == Chess.State.RUNNING) {
 //
 //        }
 
