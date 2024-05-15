@@ -10,7 +10,12 @@ public class KnightPiece implements Piece {
     private final String name = "Knight";
     private final char glyph = 'K';
 
-    public boolean DoMove(final Piece[][] mapArray) {
+    public KnightPiece(Color color, Pos pos) {
+        this.color = color;
+        this.pos = pos;
+    }
+
+    public boolean DoMove(final Piece[][] mapArray, Color color) {
         return true;
     }
     public String RepresentOnBoard() {
@@ -20,7 +25,7 @@ public class KnightPiece implements Piece {
         } else {
             colorGlyph = 'w';
         }
-        return String.valueOf(colorGlyph + glyph);
+        return String.valueOf(colorGlyph) + String.valueOf(this.glyph);
     }
 
     /* Setters */
@@ -39,5 +44,9 @@ public class KnightPiece implements Piece {
 
     public Pos GetPos() {
         return this.pos;
+    }
+
+    public String GetName() {
+        return this.name;
     }
 }

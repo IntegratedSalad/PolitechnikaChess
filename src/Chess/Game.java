@@ -42,12 +42,13 @@ public class Game {
 
         // Setup Board
         Map map = new Map();
+        map.PrintMap();
 
         // How to associate pieces with the player? By color
 
-        while (state == Chess.State.RUNNING) {
-
-        }
+//        while (state == Chess.State.RUNNING) {
+//
+//        }
 
         state = State.EXIT;
         return state;

@@ -11,7 +11,12 @@ public class QueenPiece implements Piece {
     private final String name = "Queen";
     private final char glyph = 'Q';
 
-    public boolean DoMove(final Piece[][] mapArray) {
+    public QueenPiece(Color color, Pos pos) {
+        this.color = color;
+        this.pos = pos;
+    }
+
+    public boolean DoMove(final Piece[][] mapArray, Color color) {
         return true;
     }
     public String RepresentOnBoard() {
@@ -21,7 +26,7 @@ public class QueenPiece implements Piece {
         } else {
             colorGlyph = 'w';
         }
-        return String.valueOf(colorGlyph + glyph);
+        return String.valueOf(colorGlyph) + String.valueOf(this.glyph);
     }
 
     /* Setters */
@@ -40,5 +45,9 @@ public class QueenPiece implements Piece {
 
     public Pos GetPos() {
         return this.pos;
+    }
+
+    public String GetName() {
+        return this.name;
     }
 }

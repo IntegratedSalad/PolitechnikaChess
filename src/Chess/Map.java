@@ -1,5 +1,5 @@
 package Chess;
-import Pieces.EmptyPiece;
+import Pieces.*;
 
 public class Map {
 
@@ -19,6 +19,25 @@ public class Map {
                 // y span from 8 to 1
             }
         }
+
+        mapArray[0][0] = new RookPiece(Color.BLACK, new Pos(0, 0));
+        mapArray[0][1] = new KnightPiece(Color.BLACK, new Pos(1, 0));
+        mapArray[0][2] = new BishopPiece(Color.BLACK, new Pos(2, 0));
+        mapArray[0][3] = new QueenPiece(Color.BLACK, new Pos(3, 0));
+        mapArray[0][4] = new KingPiece(Color.BLACK, new Pos(4, 0));
+        mapArray[0][5] = new BishopPiece(Color.BLACK, new Pos(5, 0));
+        mapArray[0][6] = new KnightPiece(Color.BLACK, new Pos(6, 0));
+        mapArray[0][7] = new RookPiece(Color.BLACK, new Pos(7, 0));
+
+        // Maybe method "initialize pawns"
+        mapArray[1][0] = new PawnPiece(Color.BLACK, new Pos(0, 1));
+        mapArray[1][1] = new PawnPiece(Color.BLACK, new Pos(1, 1));
+        mapArray[1][2] = new PawnPiece(Color.BLACK, new Pos(2, 1));
+        mapArray[1][3] = new PawnPiece(Color.BLACK, new Pos(3, 1));
+        mapArray[1][4] = new PawnPiece(Color.BLACK, new Pos(4, 1));
+        mapArray[1][5] = new PawnPiece(Color.BLACK, new Pos(5, 1));
+        mapArray[1][6] = new PawnPiece(Color.BLACK, new Pos(6, 1));
+        mapArray[1][7] = new PawnPiece(Color.BLACK, new Pos(7, 1));
     }
 
     public Piece[][] GetMapArray() {
@@ -26,21 +45,13 @@ public class Map {
     }
 
     public void PrintMap() {
-
         final String rowMarks = "abcdefgh";
-        for (int y = 0; y < BOARD_SIZE_HEIGHT + 1; y++) {
-            for (int x = 0; x < BOARD_SIZE_WIDTH + 1; x++) {
-                if (y == 0)
-                {
-                    System.out.print(rowMarks.charAt(x));
-                }
 
-
-
-                if (x == BOARD_SIZE_WIDTH)
-                {
-                    System.out.print(8 - y);
-                }
+        System.out.println("Map:");
+        for (int y = 0; y < BOARD_SIZE_HEIGHT; y++) {
+            System.out.print(rowMarks.charAt(7 - y) + " ");
+            for (int x = 0; x < BOARD_SIZE_WIDTH; x++) {
+                System.out.print(this.mapArray[y][x].RepresentOnBoard() + " ");
             }
             System.out.println();
         }

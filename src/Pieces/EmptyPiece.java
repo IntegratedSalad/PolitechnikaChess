@@ -16,7 +16,7 @@ public class EmptyPiece implements Piece {
     }
 
     /* Methods */
-    public boolean DoMove(final Piece[][] mapArray) {
+    public boolean DoMove(final Piece[][] mapArray, Color color) {
         System.out.println("Attempted to move Empty Piece");
         return false;
     }
@@ -41,5 +41,9 @@ public class EmptyPiece implements Piece {
 
     public String RepresentOnBoard() {
         return "  "; // two spaces!
+    }
+
+    public String GetName() {
+        return this.name;
     }
 }
