@@ -6,7 +6,7 @@ public class Game {
 
     private static int currentPlayer;  // index of playerNames
     private static State state;
-    private static String[] playerNames = new String[2];
+    private static Player[] players = new Player[2];
     private static Scanner scanner = new Scanner(System.in);
 
     private static final int RETURN_ERROR = 65535;
@@ -18,33 +18,49 @@ public class Game {
     public State Run() {
         System.out.println("Welcome to the chess gaem :DD");
 
+        Player p1 = new Player();
+        Player p2 = new Player();
+
         System.out.println("Player1 name:");
         String player1Name = GetInput(false);
-        playerNames[0] = player1Name;
+        p1.SetName(player1Name);
 
         System.out.println("Player2 name:");
         String player2Name = GetInput(false);
-        playerNames[1] = player2Name;
+        p2.SetName(player2Name);
 
         // Decide which player starts
         System.out.println("Which player starts? (1 or 2)");
-        System.out.println("Player (1): " + playerNames[0]);
-        System.out.println("Player (2): " + playerNames[1]);
+        System.out.println("Player (1): " + p1.GetName());
+        System.out.println("Player (2): " + p2.GetName());
+
         int currentPlayer = GetIntFromInput(false);
 
-        if (currentPlayer != RETURN_ERROR) {
+        if (currentPlayer <= 2 && currentPlayer >= 1) {
             currentPlayer -= 1;
         } else {
             return State.ERROR;
         }
-        System.out.println("Current player = " + currentPlayer);
+
+        players[0] = p1;
+        players[1] = p2;
+
+        players[currentPlayer].SetColor(Color.WHITE);
+
+        if (currentPlayer == 1) {
+            players[0].SetColor(Color.BLACK);
+        } else
+        {
+            players[1].SetColor(Color.BLACK);
+        }
+
+        System.out.println(players[currentPlayer].GetName() +
+                          " starts (" + players[currentPlayer].GetColor() + ")");
         System.out.println("Starting game");
 
         // Setup Board
         Map map = new Map();
         map.PrintMap();
-
-        // How to associate pieces with the player? By color
 
 //        while (state == Chess.State.RUNNING) {
 //
@@ -74,21 +90,21 @@ public class Game {
         try {
             x = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a number, try again");
+            System.out.println("You have to type a number");
             x = RETURN_ERROR;
         }
         return x;
     }
 
-    private static int MapPlayerNameToIndex(final String playerName) {
-        int toReturn;
-        if (playerNames[0].equals(playerName)) {
-            toReturn = 0;
-        } else {
-            toReturn = 1;
-        }
-        return toReturn;
-    }
+//    private static int MapPlayerNameToIndex(final String playerName) {
+//        int toReturn;
+//        if (playerNames[0].equals(playerName)) {
+//            toReturn = 0;
+//        } else {
+//            toReturn = 1;
+//        }
+//        return toReturn;
+//    }
 
     private static void Reset() {
         System.out.println("Dodobunppo");
@@ -104,6 +120,16 @@ public class Game {
 
     private static void SetStartingPlayer() {
 
+    }
+
+    private static void AdvancePlayer() {
+        if (currentPlayer == 0)
+        {
+            currentPlayer = 1;
+        } else
+        {
+            currentPlayer = 0;
+        }
     }
 
     private static boolean CheckWin() {

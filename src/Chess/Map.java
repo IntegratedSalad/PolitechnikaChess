@@ -84,8 +84,13 @@ public class Map {
 
     public Pos ResolvePosFromInput(final String input) {
         // TODO: Important
+        final String rowMarks = "abcdefgh";
         Pos pos = new Pos(0, 0);
-        // here?
+
+        final String inputRow = String.valueOf(input.charAt(3));
+        final String inputCol = String.valueOf(input.charAt(4));
+        pos.SetY(7 - rowMarks.indexOf(inputRow));
+        pos.SetX(Integer.parseInt(inputCol));
 
         return pos;
     }
