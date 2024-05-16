@@ -1,5 +1,4 @@
 package Chess;
-
 import java.util.Scanner;
 
 public class Game {
@@ -69,9 +68,15 @@ public class Game {
             String input = GetInput(false);
             System.out.println();
 
+            if (input.equals("exit") || input.equals("quit") || input.equals("q") || input.equals("e")) {
+                state = State.EXIT;
+                return State.EXIT;
+            }
+
             if (ProcessPlayerTurn(players[currentPlayer], input)) { // only if valid turn result, advance the player
                 AdvancePlayer();
             }
+            // TODO: Check if win
         }
 
         state = State.EXIT;
@@ -116,17 +121,17 @@ public class Game {
             return false;
         }
 
-        System.out.println(currentPlayer.GetName() +  " (" +currentPlayer.GetColor()  + ") " + "turn: ");
+        System.out.println(currentPlayer.GetName() +  " (" + currentPlayer.GetColor()  + ") " + "turn: ");
 
         System.out.println("Piece pos: ");
         inputPosArr[0].PrintPos();
         System.out.println("Displacement pos: ");
         inputPosArr[1].PrintPos();
-        return true;
+
+        return map.MovePiece(currentPlayer, inputPosArr[0], inputPosArr[1]);
     }
 
     private static void Reset() {
-        System.out.println("Dodobunppo");
     }
 
     private static void PresentResult() {
@@ -148,6 +153,6 @@ public class Game {
     }
 
     private static boolean CheckWin() {
-        return false;
+        return map.CheckWin();
     }
 }

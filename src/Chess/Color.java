@@ -1,4 +1,4 @@
 package Chess;
 public enum Color {
-    BLACK, WHITE
+    BLACK, WHITE, UNDEFINED
 }

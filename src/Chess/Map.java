@@ -6,6 +6,10 @@ public class Map {
     private static final int BOARD_SIZE_WIDTH = 8;
     private static final int BOARD_SIZE_HEIGHT = 8;
 
+    private static boolean isCheck = false;
+    private static boolean isMate = false;
+    private static Color winningColor = Color.UNDEFINED;
+
     private Piece[][] mapArray;
 
     public Map() {
@@ -111,5 +115,29 @@ public class Map {
         posArray[1] = pieceDisplacement;
 
         return posArray;
+    }
+
+    public boolean MovePiece(final Player currentPlayer, final Pos piecePos, final Pos dispPos) {
+        /* This is done because of how player can input places  */
+        piecePos.SetX(piecePos.GetX() - 1);
+        piecePos.SetY(piecePos.GetY() - 1);
+        dispPos.SetX(dispPos.GetX() - 1);
+        dispPos.SetY(dispPos.GetY() - 1);
+        System.out.print("Piece at: ");
+        System.out.println(piecePos.GetX() + " " + piecePos.GetY() + ":");
+        System.out.println(mapArray[piecePos.GetY()][piecePos.GetX()].GetName());
+        System.out.println(mapArray[piecePos.GetY()][piecePos.GetX()].GetColor());
+
+        // Try to teleport the piece there
+
+        return true;
+    }
+
+    public boolean CheckWin() {
+
+        // TODO: Do check
+        // TODO: set winning color
+
+        return isCheck && isMate && winningColor != Color.UNDEFINED;
     }
 }
