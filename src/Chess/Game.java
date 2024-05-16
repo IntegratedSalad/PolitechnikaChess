@@ -7,7 +7,7 @@ public class Game {
     private static int currentPlayer;  // index of playerNames
     private static State state;
     private static Player[] players = new Player[2];
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static Map map;
 
     private static final int RETURN_ERROR = 65535;
@@ -66,11 +66,12 @@ public class Game {
         while (state == Chess.State.RUNNING) {
             map.PrintMap();
             System.out.print("(" + players[currentPlayer].GetName() + ", " + players[currentPlayer].GetColor() + ") >> ");
-            String input = scanner.nextLine();
+            String input = GetInput(false);
             System.out.println();
 
-            ProcessPlayerTurn(players[currentPlayer], input);
-            AdvancePlayer();
+            if (ProcessPlayerTurn(players[currentPlayer], input)) { // only if valid turn result, advance the player
+                AdvancePlayer();
+            }
         }
 
         state = State.EXIT;
@@ -103,12 +104,16 @@ public class Game {
         return x;
     }
 
-    private static void ProcessPlayerTurn(Player currentPlayer, final String input) {
+    private static boolean ProcessPlayerTurn(Player currentPlayer, final String input) {
         Pos[] inputPosArr = map.ResolvePosFromInput(input);
+        if (inputPosArr == null) {
+            System.out.println("Invalid input!");
+            return false;
+        }
 
         if (!(inputPosArr[0].Validate() && inputPosArr[1].Validate())) {
             System.out.println("You have entered an invalid position");
-            return;
+            return false;
         }
 
         System.out.println(currentPlayer.GetName() +  " (" +currentPlayer.GetColor()  + ") " + "turn: ");
@@ -117,6 +122,7 @@ public class Game {
         inputPosArr[0].PrintPos();
         System.out.println("Displacement pos: ");
         inputPosArr[1].PrintPos();
+        return true;
     }
 
     private static void Reset() {

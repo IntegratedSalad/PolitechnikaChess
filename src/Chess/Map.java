@@ -66,7 +66,6 @@ public class Map {
     public void PrintMap() {
         final String rowMarks = "abcdefgh";
 
-        System.out.println("Map:");
         for (int y = 0; y < BOARD_SIZE_HEIGHT; y++) {
             System.out.print(rowMarks.charAt(7 - y) + " ");
             for (int x = 0; x < BOARD_SIZE_WIDTH; x++) {
@@ -84,7 +83,12 @@ public class Map {
 
     public Pos[] ResolvePosFromInput(final String input) {
 
-//         TODO: Check invalid input!!!
+        // TODO: check if numerical and alphanumerical in correct places! (compare pos if we can parse char at pos)
+
+        if (input.length() != 5) {
+            return null;
+        }
+
         final String rowMarks = "abcdefgh";
         Pos piecePos = new Pos(0, 0);
         Pos pieceDisplacement = new Pos(0, 0);
