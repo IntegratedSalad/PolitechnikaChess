@@ -23,4 +23,13 @@ public class Pos {
     public int GetY() {
         return this.y;
     }
+
+    public void PrintPos() {
+        System.out.println("X: " + this.x + " Y: " + this.y);
+    }
+
+    public boolean Validate() {
+        // It's 1 because player physically will input 1 or 8.
+        return (this.x >= 1 && this.x <= 8 && this.y >= 1 && this.y <= 8);
+    }
 }

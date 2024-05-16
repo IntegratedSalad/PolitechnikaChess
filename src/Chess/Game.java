@@ -8,6 +8,7 @@ public class Game {
     private static State state;
     private static Player[] players = new Player[2];
     private static Scanner scanner = new Scanner(System.in);
+    private static Map map;
 
     private static final int RETURN_ERROR = 65535;
 
@@ -34,7 +35,7 @@ public class Game {
         System.out.println("Player (1): " + p1.GetName());
         System.out.println("Player (2): " + p2.GetName());
 
-        int currentPlayer = GetIntFromInput(false);
+        currentPlayer = GetIntFromInput(false);
 
         if (currentPlayer <= 2 && currentPlayer >= 1) {
             currentPlayer -= 1;
@@ -59,12 +60,18 @@ public class Game {
         System.out.println("Starting game");
 
         // Setup Board
-        Map map = new Map();
-        map.PrintMap();
+        map = new Map();
+        System.out.println("Enter piece position and what place to move it to:");
+        System.out.println("Input row first ex.: a1 c6");
+        while (state == Chess.State.RUNNING) {
+            map.PrintMap();
+            System.out.print("(" + players[currentPlayer].GetName() + ", " + players[currentPlayer].GetColor() + ") >> ");
+            String input = scanner.nextLine();
+            System.out.println();
 
-//        while (state == Chess.State.RUNNING) {
-//
-//        }
+            ProcessPlayerTurn(players[currentPlayer], input);
+            AdvancePlayer();
+        }
 
         state = State.EXIT;
         return state;
@@ -96,15 +103,21 @@ public class Game {
         return x;
     }
 
-//    private static int MapPlayerNameToIndex(final String playerName) {
-//        int toReturn;
-//        if (playerNames[0].equals(playerName)) {
-//            toReturn = 0;
-//        } else {
-//            toReturn = 1;
-//        }
-//        return toReturn;
-//    }
+    private static void ProcessPlayerTurn(Player currentPlayer, final String input) {
+        Pos[] inputPosArr = map.ResolvePosFromInput(input);
+
+        if (!(inputPosArr[0].Validate() && inputPosArr[1].Validate())) {
+            System.out.println("You have entered an invalid position");
+            return;
+        }
+
+        System.out.println(currentPlayer.GetName() +  " (" +currentPlayer.GetColor()  + ") " + "turn: ");
+
+        System.out.println("Piece pos: ");
+        inputPosArr[0].PrintPos();
+        System.out.println("Displacement pos: ");
+        inputPosArr[1].PrintPos();
+    }
 
     private static void Reset() {
         System.out.println("Dodobunppo");
@@ -118,17 +131,13 @@ public class Game {
 
     }
 
-    private static void SetStartingPlayer() {
-
-    }
-
     private static void AdvancePlayer() {
-        if (currentPlayer == 0)
+        if (Game.currentPlayer == 0)
         {
-            currentPlayer = 1;
+            Game.currentPlayer = 1;
         } else
         {
-            currentPlayer = 0;
+            Game.currentPlayer = 0;
         }
     }
 

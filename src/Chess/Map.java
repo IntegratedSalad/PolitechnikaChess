@@ -15,8 +15,8 @@ public class Map {
             for (int x = 0; x < BOARD_SIZE_WIDTH; x++) {
                 Piece emptyPiece = new EmptyPiece(x, y);
                 mapArray[y][x] = emptyPiece;
-                // x span from a to h
-                // y span from 8 to 1
+                // y span from a to h
+                // x span from 8 to 1
             }
         }
 
@@ -82,16 +82,30 @@ public class Map {
         System.out.println();
     }
 
-    public Pos ResolvePosFromInput(final String input) {
-        // TODO: Important
+    public Pos[] ResolvePosFromInput(final String input) {
+
+//         TODO: Check invalid input!!!
         final String rowMarks = "abcdefgh";
-        Pos pos = new Pos(0, 0);
+        Pos piecePos = new Pos(0, 0);
+        Pos pieceDisplacement = new Pos(0, 0);
+        Pos[] posArray = new Pos[2];
 
-        final String inputRow = String.valueOf(input.charAt(3));
-        final String inputCol = String.valueOf(input.charAt(4));
-        pos.SetY(7 - rowMarks.indexOf(inputRow));
-        pos.SetX(Integer.parseInt(inputCol));
+        final String pieceInputRow = String.valueOf(input.charAt(0)); // Y
+        final String pieceInputColumn = String.valueOf(input.charAt(1)); // X
+        piecePos.SetY(8 - rowMarks.indexOf(pieceInputRow));
+        piecePos.SetX(Integer.parseInt(pieceInputColumn));
 
-        return pos;
+        final String inputDisplacementRow = String.valueOf(input.charAt(3)); // Y
+        final String inputDisplacementColumn = String.valueOf(input.charAt(4)); // X
+        pieceDisplacement.SetY(8 - rowMarks.indexOf(inputDisplacementRow));
+        pieceDisplacement.SetX(Integer.parseInt(inputDisplacementColumn));
+
+        piecePos.PrintPos();
+        pieceDisplacement.PrintPos();
+
+        posArray[0] = piecePos;
+        posArray[1] = pieceDisplacement;
+
+        return posArray;
     }
 }
