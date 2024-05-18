@@ -2,7 +2,6 @@ package Chess;
 import Pieces.*;
 
 public class Map {
-
     private static final int BOARD_SIZE_WIDTH = 8;
     private static final int BOARD_SIZE_HEIGHT = 8;
 
@@ -24,6 +23,7 @@ public class Map {
             }
         }
 
+        // BLACK
         mapArray[0][0] = new RookPiece(Color.BLACK, new Pos(0, 0));
         mapArray[0][1] = new KnightPiece(Color.BLACK, new Pos(1, 0));
         mapArray[0][2] = new BishopPiece(Color.BLACK, new Pos(2, 0));
@@ -33,7 +33,6 @@ public class Map {
         mapArray[0][6] = new KnightPiece(Color.BLACK, new Pos(6, 0));
         mapArray[0][7] = new RookPiece(Color.BLACK, new Pos(7, 0));
 
-        // Maybe method "initialize pawns"
         mapArray[1][0] = new PawnPiece(Color.BLACK, new Pos(0, 1));
         mapArray[1][1] = new PawnPiece(Color.BLACK, new Pos(1, 1));
         mapArray[1][2] = new PawnPiece(Color.BLACK, new Pos(2, 1));
@@ -127,8 +126,27 @@ public class Map {
         System.out.println(piecePos.GetX() + " " + piecePos.GetY() + ":");
         System.out.println(mapArray[piecePos.GetY()][piecePos.GetX()].GetName());
         System.out.println(mapArray[piecePos.GetY()][piecePos.GetX()].GetColor());
+        Piece pieceAtPos = mapArray[piecePos.GetY()][piecePos.GetX()];
 
-        // Try to teleport the piece there
+        if (currentPlayer.GetColor() != pieceAtPos.GetColor()) {
+            System.out.println("Cannot move other player's pieces...");
+            return false;
+        }
+
+        // Try to teleport the piece there after piece's "DoMove()"
+        Piece pieceToMove = mapArray[piecePos.GetY()][piecePos.GetX()];
+        final boolean canMove = pieceToMove.DoMove(mapArray, dispPos);
+
+        // If true -> look if there's a piece - if it is, delete it and replace
+        if (canMove) {
+
+        }
+
+        if (mapArray[dispPos.GetY()][dispPos.GetX()] instanceof EmptyPiece) {
+            System.out.println("Empty piece, we can place something here");
+        } else {
+            System.out.println(mapArray[dispPos.GetY()][dispPos.GetX()].GetName() + " here!");
+        }
 
         return true;
     }

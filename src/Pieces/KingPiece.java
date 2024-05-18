@@ -16,7 +16,7 @@ public class KingPiece implements Piece {
         this.pos = pos;
     }
 
-    public boolean DoMove(final Piece[][] mapArray, Color color) {
+    public boolean DoMove(final Piece[][] mapArray, final Pos displacementPos) {
         return true;
     }
     public String RepresentOnBoard() {

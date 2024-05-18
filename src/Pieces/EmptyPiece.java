@@ -16,7 +16,7 @@ public class EmptyPiece implements Piece {
     }
 
     /* Methods */
-    public boolean DoMove(final Piece[][] mapArray, Color color) {
+    public boolean DoMove(final Piece[][] mapArray, final Pos displacementPos) {
         System.out.println("Attempted to move Empty Piece");
         return false;
     }
