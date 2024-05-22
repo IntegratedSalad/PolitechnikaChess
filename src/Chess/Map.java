@@ -43,23 +43,23 @@ public class Map {
         mapArray[1][7] = new PawnPiece(Color.BLACK, new Pos(7, 1));
 
         // WHITE
-        mapArray[7][0] = new RookPiece(Color.WHITE, new Pos(0, 0));
-        mapArray[7][1] = new KnightPiece(Color.WHITE, new Pos(1, 0));
-        mapArray[7][2] = new BishopPiece(Color.WHITE, new Pos(2, 0));
-        mapArray[7][3] = new QueenPiece(Color.WHITE, new Pos(3, 0));
-        mapArray[7][4] = new KingPiece(Color.WHITE, new Pos(4, 0));
-        mapArray[7][5] = new BishopPiece(Color.WHITE, new Pos(5, 0));
-        mapArray[7][6] = new KnightPiece(Color.WHITE, new Pos(6, 0));
-        mapArray[7][7] = new RookPiece(Color.WHITE, new Pos(7, 0));
+        mapArray[7][0] = new RookPiece(Color.WHITE, new Pos(0, 7));
+        mapArray[7][1] = new KnightPiece(Color.WHITE, new Pos(1, 7));
+        mapArray[7][2] = new BishopPiece(Color.WHITE, new Pos(2, 7));
+        mapArray[7][3] = new QueenPiece(Color.WHITE, new Pos(3, 7));
+        mapArray[7][4] = new KingPiece(Color.WHITE, new Pos(4, 7));
+        mapArray[7][5] = new BishopPiece(Color.WHITE, new Pos(5, 7));
+        mapArray[7][6] = new KnightPiece(Color.WHITE, new Pos(6, 7));
+        mapArray[7][7] = new RookPiece(Color.WHITE, new Pos(7, 7));
 
-        mapArray[6][0] = new PawnPiece(Color.WHITE, new Pos(0, 1));
-        mapArray[6][1] = new PawnPiece(Color.WHITE, new Pos(1, 1));
-        mapArray[6][2] = new PawnPiece(Color.WHITE, new Pos(2, 1));
-        mapArray[6][3] = new PawnPiece(Color.WHITE, new Pos(3, 1));
-        mapArray[6][4] = new PawnPiece(Color.WHITE, new Pos(4, 1));
-        mapArray[6][5] = new PawnPiece(Color.WHITE, new Pos(5, 1));
-        mapArray[6][6] = new PawnPiece(Color.WHITE, new Pos(6, 1));
-        mapArray[6][7] = new PawnPiece(Color.WHITE, new Pos(7, 1));
+        mapArray[6][0] = new PawnPiece(Color.WHITE, new Pos(0, 6));
+        mapArray[6][1] = new PawnPiece(Color.WHITE, new Pos(1, 6));
+        mapArray[6][2] = new PawnPiece(Color.WHITE, new Pos(2, 6));
+        mapArray[6][3] = new PawnPiece(Color.WHITE, new Pos(3, 6));
+        mapArray[6][4] = new PawnPiece(Color.WHITE, new Pos(4, 6));
+        mapArray[6][5] = new PawnPiece(Color.WHITE, new Pos(5, 6));
+        mapArray[6][6] = new PawnPiece(Color.WHITE, new Pos(6, 6));
+        mapArray[6][7] = new PawnPiece(Color.WHITE, new Pos(7, 6));
     }
 
     public Piece[][] GetMapArray() {
@@ -131,6 +131,9 @@ public class Map {
         if (currentPlayer.GetColor() != pieceAtPos.GetColor()) {
             System.out.println("Cannot move other player's pieces...");
             return false;
+        } else if (pieceAtPos instanceof EmptyPiece) {
+            System.out.println("Cannot move empty space...");
+            return false;
         }
 
         // Try to teleport the piece there after piece's "DoMove()"
@@ -139,13 +142,18 @@ public class Map {
 
         // If true -> look if there's a piece - if it is, delete it and replace
         if (canMove) {
+            final int oldPX = piecePos.GetX();
+            final int oldPY = piecePos.GetY();
+            if (mapArray[dispPos.GetY()][dispPos.GetX()] instanceof EmptyPiece) {
+                System.out.println("Empty piece, we can place something here");
 
-        }
+                mapArray[oldPY][oldPX] = new EmptyPiece(oldPX, oldPY);
+                mapArray[dispPos.GetY()][dispPos.GetX()] = pieceToMove;
+                pieceToMove.SetPos(dispPos);
 
-        if (mapArray[dispPos.GetY()][dispPos.GetX()] instanceof EmptyPiece) {
-            System.out.println("Empty piece, we can place something here");
-        } else {
-            System.out.println(mapArray[dispPos.GetY()][dispPos.GetX()].GetName() + " here!");
+            } else {
+                System.out.println(mapArray[dispPos.GetY()][dispPos.GetX()].GetName() + " here!");
+            }
         }
 
         return true;

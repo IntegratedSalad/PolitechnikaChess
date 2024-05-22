@@ -11,6 +11,8 @@ public interface Piece {
     /* Getters */
     public Color GetColor();
     public Pos GetPos();
+    public void SetPos(final Pos pos);
+    public void SetColor(final Color color);
     public String GetName();
 
 }

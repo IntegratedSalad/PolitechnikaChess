@@ -29,11 +29,11 @@ public class KnightPiece implements Piece {
     }
 
     /* Setters */
-    public void SetPos(Pos p) {
+    public void SetPos(final Pos p) {
         this.pos = p;
     }
 
-    public void SetColor(Color c) {
+    public void SetColor(final Color c) {
         this.color = c;
     }
 

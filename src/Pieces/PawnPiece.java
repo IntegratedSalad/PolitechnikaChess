@@ -32,17 +32,26 @@ public class PawnPiece implements Piece {
                 System.out.println("Legal move!");
                 System.out.println("Moved by: " + (dispY - pieceY));
             } else if (((dispY - pieceY == 1) && (dispX - pieceX == 1)) ||
-                        (dispY - pieceY == 1) && (dispX - pieceX == -1)) { // taking over a piece
+                       ((dispY - pieceY == 1) && (dispX - pieceX == -1))) { // taking over a piece
+                // if piece is there
                 System.out.println("Legal move!");
                 System.out.println("Moved by: Y:" + (dispY - pieceY));
                 System.out.println("Moved by: X:" + (dispX - pieceX));
-            }
+            } // TODO: jeszcze ten dziwny ruch co mozna zrobic pionkiem aby drugiego pionka przejac
 
         } else { // WHITE
             // From bottom to top
-
+            if (((dispY - pieceY == -1) || (dispY - pieceY == -2)) && (dispX - pieceX == 0)) {
+                System.out.println("Legal move!");
+                System.out.println("Moved by: Y:" + (dispY - pieceY));
+            } else if (((dispY - pieceY == -1) && (dispX - pieceX == 1)) ||
+                       ((dispY - pieceY == -1) && (dispX - pieceX == -1))) {
+                // if piece is there
+                System.out.println("Legal move!");
+                System.out.println("Moved by: Y:" + (dispY - pieceY));
+                System.out.println("Moved by: X:" + (dispX - pieceX));
+            } // TODO: jeszcze ten dziwny ruch co mozna zrobic pionkiem aby drugiego pionka przejac
         }
-
         return true;
     }
     public String RepresentOnBoard() {
@@ -56,11 +65,11 @@ public class PawnPiece implements Piece {
     }
 
     /* Setters */
-    public void SetPos(Pos p) {
+    public void SetPos(final Pos p) {
         this.pos = p;
     }
 
-    public void SetColor(Color c) {
+    public void SetColor(final Color c) {
         this.color = c;
     }
 
