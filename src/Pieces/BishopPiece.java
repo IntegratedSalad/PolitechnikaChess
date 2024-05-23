@@ -17,6 +17,8 @@ public class BishopPiece implements Piece {
     }
 
     public boolean DoMove(final Piece[][] mapArray, final Pos displacementPos) {
+
+
         return true;
     }
     public String RepresentOnBoard() {

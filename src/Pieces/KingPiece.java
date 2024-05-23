@@ -4,6 +4,9 @@ import Chess.Color;
 import Chess.Piece;
 import Chess.Pos;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 public class KingPiece implements Piece {
     /* Attributes */
     private Color color = null;
@@ -21,9 +24,9 @@ public class KingPiece implements Piece {
         final int pieceY = pos.GetY();
         final int dispX = displacementPos.GetX();
         final int dispY = displacementPos.GetY();
-
-        return true;
+        return sqrt(pow(dispX - pieceX, 2) + pow(dispY - pieceY, 2)) <= 1;
     }
+
     public String RepresentOnBoard() {
         char colorGlyph;
         if (this.color == Color.BLACK) {
