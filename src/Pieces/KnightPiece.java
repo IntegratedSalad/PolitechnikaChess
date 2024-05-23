@@ -16,7 +16,18 @@ public class KnightPiece implements Piece {
     }
 
     public boolean DoMove(final Piece[][] mapArray, final Pos displacementPos) {
-        return true;
+        final int pieceX = pos.GetX();
+        final int pieceY = pos.GetY();
+        final int dispX = displacementPos.GetX();
+        final int dispY = displacementPos.GetY();
+
+        if (this.color == Color.BLACK) { // BLACK
+            return ((dispX - pieceX == 1) && (dispY - pieceY == 2)) ||
+                    (dispX - pieceX == -1) && (dispY - pieceY == 2);
+        } else { // WHITE
+            return ((dispX - pieceX == 1) && (dispY - pieceY == -2)) ||
+                    (dispX - pieceX == -1) && (dispY - pieceY == 2);
+        }
     }
     public String RepresentOnBoard() {
         char colorGlyph;

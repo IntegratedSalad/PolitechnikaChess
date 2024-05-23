@@ -17,6 +17,11 @@ public class KingPiece implements Piece {
     }
 
     public boolean DoMove(final Piece[][] mapArray, final Pos displacementPos) {
+        final int pieceX = pos.GetX();
+        final int pieceY = pos.GetY();
+        final int dispX = displacementPos.GetX();
+        final int dispY = displacementPos.GetY();
+
         return true;
     }
     public String RepresentOnBoard() {

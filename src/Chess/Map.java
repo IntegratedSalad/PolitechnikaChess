@@ -150,13 +150,11 @@ public class Map {
                 mapArray[oldPY][oldPX] = new EmptyPiece(oldPX, oldPY);
                 mapArray[dispPos.GetY()][dispPos.GetX()] = pieceToMove;
                 pieceToMove.SetPos(dispPos);
-
             } else {
                 System.out.println(mapArray[dispPos.GetY()][dispPos.GetX()].GetName() + " here!");
             }
         }
-
-        return true;
+        return canMove;
     }
 
     public boolean CheckWin() {
