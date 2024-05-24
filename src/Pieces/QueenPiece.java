@@ -17,7 +17,7 @@ public class QueenPiece implements Piece {
     }
 
     public boolean DoMove(final Piece[][] mapArray, final Pos displacementPos) {
-        return true;
+        return false;
     }
     public String RepresentOnBoard() {
         char colorGlyph;

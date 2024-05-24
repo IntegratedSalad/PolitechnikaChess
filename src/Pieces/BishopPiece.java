@@ -37,8 +37,8 @@ public class BishopPiece implements Piece {
            (dirX == -1 && dirY == -1) ||
            (dirX == 1 && dirY == -1) ||
            (dirX == -1 && dirY == 1)) { // only diagonally
-            int x = pieceX;
-            int y = pieceY;
+            int x = pieceX + dirX;
+            int y = pieceY + dirY;
             System.out.println("Diagonal move!");
             while (x != dispX && y != dispY) {
                 if (!(mapArray[y][x] instanceof EmptyPiece)) {
