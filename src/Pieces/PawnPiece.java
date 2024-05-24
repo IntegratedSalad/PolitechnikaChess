@@ -34,11 +34,8 @@ public class PawnPiece implements Piece {
                 return true;
             } else if (((dispY - pieceY == 1) && (dispX - pieceX == 1)) ||
                        ((dispY - pieceY == 1) && (dispX - pieceX == -1))) { // taking over a piece
-                // TODO: if piece is there
                 System.out.println("Legal move!");
-                System.out.println("Moved by: Y:" + (dispY - pieceY));
-                System.out.println("Moved by: X:" + (dispX - pieceX));
-                return true;
+                return !(mapArray[dispY][dispX] instanceof EmptyPiece);
             } // TODO: jeszcze ten dziwny ruch co mozna zrobic pionkiem aby drugiego pionka przejac
         } else { // WHITE
             // From bottom to top
@@ -48,11 +45,8 @@ public class PawnPiece implements Piece {
                 return true;
             } else if (((dispY - pieceY == -1) && (dispX - pieceX == 1)) ||
                        ((dispY - pieceY == -1) && (dispX - pieceX == -1))) {
-                // if piece is there
                 System.out.println("Legal move!");
-                System.out.println("Moved by: Y:" + (dispY - pieceY));
-                System.out.println("Moved by: X:" + (dispX - pieceX));
-                return true;
+                return !(mapArray[dispY][dispX] instanceof EmptyPiece);
             } // TODO: jeszcze ten dziwny ruch co mozna zrobic pionkiem aby drugiego pionka przejac
         }
         return false;
