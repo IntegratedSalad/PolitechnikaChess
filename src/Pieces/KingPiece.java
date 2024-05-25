@@ -24,7 +24,7 @@ public class KingPiece implements Piece {
         final int pieceY = pos.GetY();
         final int dispX = displacementPos.GetX();
         final int dispY = displacementPos.GetY();
-        return sqrt(pow(dispX - pieceX, 2) + pow(dispY - pieceY, 2)) <= 1;
+        return Math.floor(sqrt(pow(dispX - pieceX, 2) + pow(dispY - pieceY, 2))) <= 1;
     }
 
     public String RepresentOnBoard() {
