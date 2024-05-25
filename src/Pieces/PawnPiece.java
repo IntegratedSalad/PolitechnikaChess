@@ -28,7 +28,7 @@ public class PawnPiece implements Piece {
         System.out.println("dispX: " + dispX + " dispY: " + dispY);
         if (this.color == Color.BLACK) { // BLACK
             // From top to bottom
-            if (((dispY - pieceY == 1) || (dispY - pieceY == 2)) && (dispX - pieceX == 0)) {
+            if (((dispY - pieceY == 1) || ((dispY - pieceY == 2) && pieceY == 1)) && (dispX - pieceX == 0)) {
                 System.out.println("Legal move!");
                 System.out.println("Moved by: " + (dispY - pieceY));
                 return true;
@@ -39,7 +39,7 @@ public class PawnPiece implements Piece {
             } // TODO: jeszcze ten dziwny ruch co mozna zrobic pionkiem aby drugiego pionka przejac
         } else { // WHITE
             // From bottom to top
-            if (((dispY - pieceY == -1) || (dispY - pieceY == -2)) && (dispX - pieceX == 0)) {
+            if (((dispY - pieceY == -1) || ((dispY - pieceY == -2) && pieceY == 6)) && (dispX - pieceX == 0)) {
                 System.out.println("Legal move!");
                 System.out.println("Moved by: Y:" + (dispY - pieceY));
                 return true;

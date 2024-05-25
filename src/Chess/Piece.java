@@ -5,6 +5,8 @@ public interface Piece {
 
     /* Piece itself doesn't move itself nor anything on the mapArray! */
     /* Every piece's DoMove automatically updates its Pos! */
+
+    /* There can also be a pointsValue or something */
     public boolean DoMove(final Piece[][] mapArray, final Pos displacementPos);
     public String RepresentOnBoard();
 

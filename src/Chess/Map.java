@@ -138,7 +138,7 @@ public class Map {
 
         // Try to teleport the piece there after piece's "DoMove()"
         Piece pieceToMove = mapArray[piecePos.GetY()][piecePos.GetX()];
-        final boolean canMove = pieceToMove.DoMove(mapArray, dispPos);
+        boolean canMove = pieceToMove.DoMove(mapArray, dispPos);
 
         // If true -> look if there's a piece - if it is, delete it and replace
         if (canMove) {
@@ -151,7 +151,16 @@ public class Map {
                 mapArray[dispPos.GetY()][dispPos.GetX()] = pieceToMove;
                 pieceToMove.SetPos(dispPos);
             } else {
-                System.out.println(mapArray[dispPos.GetY()][dispPos.GetX()].GetName() + " here!");
+                // TODO: Taking over the pieces
+                if (mapArray[dispPos.GetY()][dispPos.GetX()].GetColor() != currentPlayer.GetColor()) {
+                    System.out.println(mapArray[dispPos.GetY()][dispPos.GetX()].GetName() + " here!\nTaking over!");
+                    mapArray[oldPY][oldPX] = new EmptyPiece(oldPX, oldPY);
+                    mapArray[dispPos.GetY()][dispPos.GetX()] = pieceToMove;
+                    pieceToMove.SetPos(dispPos);
+                } else {
+                    System.out.println("Cannot take over your own pieces!");
+                    canMove = false;
+                }
             }
         }
         return canMove;
