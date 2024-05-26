@@ -41,7 +41,7 @@ public class RookPiece implements Piece {
                 (dirX == 0 && dirY == 1) || (dirX == 0 && dirY == -1)) {
             int x = pieceX + dirX;
             int y = pieceY + dirY;
-            while (x != dispX && y != dispY) {
+            while (x != dispX || y != dispY) {
                 if (!(mapArray[y][x] instanceof EmptyPiece)) {
                     System.out.println("Something's in the way...");
                     return false;
