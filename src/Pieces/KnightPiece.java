@@ -21,13 +21,11 @@ public class KnightPiece implements Piece {
         final int dispX = displacementPos.GetX();
         final int dispY = displacementPos.GetY();
 
-        if (this.color == Color.BLACK) { // BLACK
-            return ((dispX - pieceX == 1) && (dispY - pieceY == 2)) ||
-                    (dispX - pieceX == -1) && (dispY - pieceY == 2);
-        } else { // WHITE
-            return ((dispX - pieceX == 1) && (dispY - pieceY == -2)) ||
-                    (dispX - pieceX == -1) && (dispY - pieceY == 2);
-        }
+        // Calculate the differences in x and y positions
+        int deltaX = Math.abs(dispX - pieceX);
+        int deltaY = Math.abs(dispY - pieceY);
+
+        return (deltaX == 2 && deltaY == 1) || (deltaX == 1 && deltaY == 2);
     }
     public String RepresentOnBoard() {
         char colorGlyph;
