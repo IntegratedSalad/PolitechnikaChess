@@ -27,6 +27,7 @@ public class KnightPiece implements Piece {
 
         return (deltaX == 2 && deltaY == 1) || (deltaX == 1 && deltaY == 2);
     }
+
     public String RepresentOnBoard() {
         char colorGlyph;
         if (this.color == Color.BLACK) {
