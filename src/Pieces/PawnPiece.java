@@ -31,7 +31,7 @@ public class PawnPiece implements Piece {
             if (((dispY - pieceY == 1) || ((dispY - pieceY == 2) && pieceY == 1)) && (dispX - pieceX == 0)) {
                 System.out.println("Legal move!");
                 System.out.println("Moved by: " + (dispY - pieceY));
-                return true;
+                return mapArray[dispY][dispX] instanceof EmptyPiece;
             } else if (((dispY - pieceY == 1) && (dispX - pieceX == 1)) ||
                        ((dispY - pieceY == 1) && (dispX - pieceX == -1))) { // taking over a piece
                 System.out.println("Legal move!");
@@ -42,7 +42,7 @@ public class PawnPiece implements Piece {
             if (((dispY - pieceY == -1) || ((dispY - pieceY == -2) && pieceY == 6)) && (dispX - pieceX == 0)) {
                 System.out.println("Legal move!");
                 System.out.println("Moved by: Y:" + (dispY - pieceY));
-                return true;
+                return mapArray[dispY][dispX] instanceof EmptyPiece;
             } else if (((dispY - pieceY == -1) && (dispX - pieceX == 1)) ||
                        ((dispY - pieceY == -1) && (dispX - pieceX == -1))) {
                 System.out.println("Legal move!");

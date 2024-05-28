@@ -20,7 +20,6 @@ public class QueenPiece implements Piece {
 
     public boolean DoMove(final Piece[][] mapArray, final Pos displacementPos) {
 
-        System.out.println("Movinge rooke :DDDD");
         final int pieceX = pos.GetX();
         final int pieceY = pos.GetY();
         final int dispX = displacementPos.GetX();
